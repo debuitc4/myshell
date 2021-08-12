@@ -1,0 +1,102 @@
+NAME
+   User manual for myshell.c
+
+SYNOPSIS
+   ./myshell [batchfile]
+
+REFERENCES
+            Lanaro, D., Kasampalis, S. and Nguyen, Q., 2021. Advanced Python Programming. [online] O’Reilly Online Learning. Available at: <https://learning.oreilly.com/library/view/advanced-python-programming/9781838551216/6a966328-7795-4a77-86d3-1e2b5b05d428.xhtml> [Accessed 10 March 2021].
+            Wells, C., Holden, S. and Delaney, T., 2021. Core Python Applications Programming, 3rd Edition. [online] O’Reilly Online Learning. Available at: <https://learning.oreilly.com/library/view/core-python-applications/9780132779371/ch04.html> [Accessed 5 March 2021].
+            Palakollu, S., 2021. Practical System Programming with C: Pragmatic Example Applications in Linux and Unix-Based Operating Systems. [online] O’Reilly Online Learning. Available at: <https://learning.oreilly.com/library/view/practical-system-programming/9781484263211/html/497677_1_En_5_Chapter.xhtml> [Accessed 20 March 2021].
+            Watt, A., 2021. Professional Windows® PowerShell. [online] O’Reilly Online Learning. Available at: <https://learning.oreilly.com/library/view/professional-windows-powershell/9780471946939/9780471946939_environment_variables_overview.html> [Accessed 5 March 2021].
+            Pubs.opengroup.org. 2021. freopen. [online] Available at: <https://pubs.opengroup.org/onlinepubs/009695399/functions/freopen.html> [Accessed 5 March 2021].
+            Rosenblatt, B. and Newham, C., 2021. Learning the bash Shell, Second Edition. [online] O’Reilly Online Learning. Available at: <https://learning.oreilly.com/library/view/learning-the-bash/1565923472/ch01s08.html> [Accessed 10 March 2021].
+
+
+DESCRIPTION
+   Myshell is a sh-compatible language interpreter. It executes commands read from standard input or a file.
+   To compile the program files when in the src directory, please type "make" on the command line.
+   To start shell type "./myshell" on the command line
+   If you want commands to be read in from batchfile, type "./myshell [batchfile]" instead.
+
+AUTHOR
+   Caoimhe De Buitlear (19378783)
+
+OPTIONS
+   These are all of the internal commands built in to the shell.
+
+   -quit    
+         If the "quit" option is present, the shell exits and returns to the command line.
+   
+   -cd [..] [directory_name]
+         If the "cd" option is present, followed by the directory path you want to change to. If there is no directory supplied and you just type cd, the shell will print the currect working directory.
+
+   -clr
+         If the "clr" option is present, the terminal screen will clear.
+
+   -dir
+      	If the "dir" option is present, all the contents of the current directory will be listed.
+
+   -echo [words]
+         If the "echo" option is present, echo will print anything after it, ignoring excessive spaces or tabs.
+
+   -help
+         If the "help" option is present, it will display the user manual (this uses the more filter).
+
+   -pause
+         If the "pause" option is present, the operation of the shell will be paused. The shell will display a message telling you to press enter to return back to the shell prompt.
+
+   -environ
+         If the "environ" option is present, all the environment strings will be listed.
+
+   -mkdir [filename]
+         If the "mkdir" option is present, followed by a directory name you wish to create, it will create that directory. If that directory already exists, an error message will be displayed.
+   
+   -rmdir [filename]
+         If the "rmdir" option is present, followed by a directory name you wish to delete, it will delete that directory. If that directory does not exist, an error message will be displayed.
+
+
+ENVIRONMENT CONCEPTS
+   An environment variable is a value that can affect the way running processes will behave on a computer.
+   They are strings that contain information about the system you are using.
+   They also contain information about the configuration for the currently logged on user.
+   You can customize these varibles to change how the system works and change the behaviours of the applications on the system.
+   In my shell, I set the environment vairable to the PATH of the current directory where the programs are executing.
+
+I/O REDIRECTION
+   Input/output redirection is used to redirect or change where the standard inputs and outputs come from or go to.
+   The shell can can redirect standard error, input and output to and from files.
+   The I/O redirection symbols are ">", "<" and ">>".
+   ">" denotes standard output. Any command that has the ability to write to standard output, can write to a file instead.
+   "<" denotes standard input. Any command that reads from standard input can have its input come from a file instead.
+   ">>" denotes standard output, but appending to a file rather than overwriting it.
+   In my shell I used FILE *freopen(const char *filename, const char *mode, FILE *stream), to redirect standard input and output.
+   It is important to note that the function first tries to flush the stream and close any file descriptor associated with the stream.
+   This opens a stream for the given file for stdin or stdout, in the mode suppiled (i.e. "w", "r", "a+").
+
+
+PROCESS CONCEPT
+   A process is a program in execution. You can have multiple processes executing the same program but each process has its own copy of the program within its own address space and executes independently of the other copies.
+   The operating system manages the executino of the processes, dividing the time between the processes.
+   When a parent process creates a child process, there are two possibilities:
+      1) The parent continues to execute concurrently with its child,
+      2) The parent waits for the child to terminate.
+   We use processes to speed up the execution of our programs, by dividing the work between processes.
+
+BACKGROUND AND FOREGROUND EXECUTION
+   Background execution is a process that continues to run in the background without user intervention. 
+   The background execution is usually done by a child process. 
+   If you type the "&" character at the end of your input, the shell will return to the command prompt immediately, and execute the commands in the background.
+   
+   Foreground execution is a task or command that you run directly and you have to wait for it to complete. 
+   If a child process is created, the parent has to wait on the child process to finish before continuing.
+   An example of foreground execution is typing "ls" on the command line.
+
+EXTRA COMMAND
+   I added the rmdir and mkdir commands to my shell, because I find these commands very useful when using a shell.
+   They provide the user with a convenient way to remove and create directories from the command line.
+
+
+
+Caoimhe De Buitlear, 19378783
+I acknowledge the DCU Academic Integrity Policy: https://www.dcu.ie/sites/default/files/policy/1_-_integrity_and_plagiarism_policy_ovpaa-v4.pdf
